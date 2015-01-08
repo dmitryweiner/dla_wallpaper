@@ -153,7 +153,7 @@ public class LiveWallpaperService extends WallpaperService
                                         float i_screen = Math.round(c.getWidth()/2 + (x-ARRAY_SIZE/2) * scale);
                                         float j_screen = Math.round(c.getHeight()/2 + (y-ARRAY_SIZE/2) * scale);
                                         paint.setColor(getColorByNumber(currentDotIndex));
-                                        localCanvas.drawCircle(i_screen, j_screen, 0.8f*scale, paint);
+                                        localCanvas.drawCircle(i_screen, j_screen, 0.77f*scale, paint);
                                         //c.drawBitmap(bmp, 0, 0, null);
                                         currentDotIndex++;
                                         double r;
