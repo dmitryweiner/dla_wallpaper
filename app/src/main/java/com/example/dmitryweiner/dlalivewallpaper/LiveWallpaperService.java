@@ -16,7 +16,7 @@ public class LiveWallpaperService extends WallpaperService
     private volatile int[][] dots = new int[ARRAY_SIZE][ARRAY_SIZE];
     private volatile Bitmap bmp = null;
     private static String TAG = "dla_tree";
-    private float scale = 2;
+    private float scale = 1.5f;
     int x, y;
     int xc, yc;
     int xn, yn;
@@ -121,6 +121,8 @@ public class LiveWallpaperService extends WallpaperService
                         if (DEBUG)
                             Log.i(TAG, "Initial pixel at " + xc + "," + yc);
                     }
+                    if (DEBUG)
+                        Log.i(TAG, "rm = " + rm + ", rmax" + rmax);
                     if (rm < rmax) {
                         boolean flag = false;
                         a = 3.14159265 * 2 * Math.random();
@@ -151,7 +153,7 @@ public class LiveWallpaperService extends WallpaperService
                                         float i_screen = Math.round(c.getWidth()/2 + (x-ARRAY_SIZE/2) * scale);
                                         float j_screen = Math.round(c.getHeight()/2 + (y-ARRAY_SIZE/2) * scale);
                                         paint.setColor(getColorByNumber(currentDotIndex));
-                                        localCanvas.drawCircle(i_screen, j_screen, 0.6f*scale, paint);
+                                        localCanvas.drawCircle(i_screen, j_screen, 0.8f*scale, paint);
                                         //c.drawBitmap(bmp, 0, 0, null);
                                         currentDotIndex++;
                                         double r;
@@ -190,7 +192,7 @@ public class LiveWallpaperService extends WallpaperService
             handler.removeCallbacks(drawRunner);
             if (visible)
             {
-                handler.postDelayed(drawRunner, 100);
+                handler.postDelayed(drawRunner, 50);
             }
 
         }
