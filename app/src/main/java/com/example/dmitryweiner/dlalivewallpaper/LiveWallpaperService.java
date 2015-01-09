@@ -15,6 +15,7 @@ public class LiveWallpaperService extends WallpaperService
     static final boolean DEBUG = false;
     private volatile int[][] dots = new int[ARRAY_SIZE][ARRAY_SIZE];
     private volatile Bitmap bmp = null;
+    private volatile Canvas canvas = null;
     private static String TAG = "dla_tree";
     private float scale = 1.5f;
     int x, y;
@@ -108,6 +109,7 @@ public class LiveWallpaperService extends WallpaperService
                 c = holder.lockCanvas();
                 if (bmp == null) {
                     bmp = Bitmap.createBitmap(c.getWidth(), c.getHeight(), Bitmap.Config.ARGB_8888);
+                    canvas = new Canvas(bmp);
                 }
                 // clear the canvas
                 //c.drawColor(Color.BLACK);
@@ -148,12 +150,11 @@ public class LiveWallpaperService extends WallpaperService
                                         dots[x][y] = currentDotIndex;
                                         if (DEBUG)
                                             Log.i(TAG, "Draw dot "+ x + " " + y+ " " + currentDotIndex);
-                                        Canvas localCanvas = new Canvas(bmp);
                                         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
                                         float i_screen = Math.round(c.getWidth()/2 + (x-ARRAY_SIZE/2) * scale);
                                         float j_screen = Math.round(c.getHeight()/2 + (y-ARRAY_SIZE/2) * scale);
                                         paint.setColor(getColorByNumber(currentDotIndex));
-                                        localCanvas.drawCircle(i_screen, j_screen, 0.77f*scale, paint);
+                                        canvas.drawCircle(i_screen, j_screen, 0.75f*scale, paint);
                                         //c.drawBitmap(bmp, 0, 0, null);
                                         currentDotIndex++;
                                         double r;
@@ -176,6 +177,7 @@ public class LiveWallpaperService extends WallpaperService
                         dots = new int[ARRAY_SIZE][ARRAY_SIZE];
                         rm = 0;
                         x = y = 0;
+                        currentDotIndex = 0;
                         bmp.eraseColor(Color.BLACK);
                     }
                 }
