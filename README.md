@@ -1,5 +1,5 @@
 # DLA wallpaper
-Drawing DLA tree as a Android live wallpaper
+Drawing DLA tree on a Android live wallpaper
 
 ## Installation
 Settings -> Display -> Wallpaper -> Live Wallpapers -> select "DLA tree live wallpaper"
