@@ -11,8 +11,8 @@ import kotlin.math.*
 class LiveWallpaperService : WallpaperService() {
     companion object {
         const val DEBUG = false
-        const val ARRAY_SIZE = 300
-        const val SCALE = 4f
+        const val ARRAY_SIZE = 400
+        const val SCALE = 5f
         const val MAX_ITERATIONS = 500
         const val TAG = "com.weiner.dlawallpaper"
     }
@@ -34,6 +34,20 @@ class LiveWallpaperService : WallpaperService() {
         private val handler = Handler()
         private val drawRunner = Runnable { draw() }
         private var visible = true
+        // current coordinates
+        private var x = 0
+        private var y = 0
+        // center coordinates
+        private var xc = 0
+        private var yc = 0
+        // neighbour coordinates
+        private var xn = 0
+        private var yn = 0
+        // max radius of canvas
+        private var rmax = 0
+        // max radius of cells
+        private var rm = 1.0
+        private var currentDotIndex = 0
 
         override fun onCreate(surfaceHolder: SurfaceHolder) {
             super.onCreate(surfaceHolder)
@@ -67,21 +81,6 @@ class LiveWallpaperService : WallpaperService() {
         }
 
         fun draw() {
-            // current coordinates
-            var x = 0
-            var y = 0
-            // center coordinates
-            var xc = 0
-            var yc = 0
-            // neighbour coordinates
-            var xn = 0
-            var yn = 0
-            // max radius of canvas
-            var rmax = 0
-            // max radius of cells
-            var rm = 1.0
-            var currentDotIndex = 0
-
             val holder = surfaceHolder
             val nx = byteArrayOf(-1, -1, 0, 1, 1, 1, 0, -1)
             val ny = byteArrayOf(0, 1, 1, 1, 0, -1, -1, -1)
@@ -174,17 +173,17 @@ class LiveWallpaperService : WallpaperService() {
                 handler.postDelayed(drawRunner, 50)
             }
         }
-
-        private fun getColorByNumber(number: Int): Int {
-            val red: Int
-            val green: Int
-            val blue: Int
-            val freq = Math.PI * 2 / 1000 //TODO:  make it changeable from settings
-            red = (sin(freq * number + 0) * 127 + 128).roundToInt()
-            green = (sin(freq * number + 2) * 127 + 128).roundToInt()
-            blue = (sin(freq * number + 4) * 127 + 128).roundToInt()
-            return Color.rgb(red, green, blue)
-        }
     }
+}
+
+fun getColorByNumber(number: Int): Int {
+    val red: Int
+    val green: Int
+    val blue: Int
+    val freq = Math.PI * 2 / 1000
+    red = (sin(freq * number + 0) * 127 + 128).roundToInt()
+    green = (sin(freq * number + 2) * 127 + 128).roundToInt()
+    blue = (sin(freq * number + 4) * 127 + 128).roundToInt()
+    return Color.rgb(red, green, blue)
 }
 
