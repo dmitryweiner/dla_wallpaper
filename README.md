@@ -10,4 +10,3 @@ Settings -> Display -> Wallpaper -> Live Wallpapers -> select "DLA tree live wal
 
 ## Links to read
 * https://www.vogella.com/tutorials/AndroidLiveWallpaper/article.html
-* 
