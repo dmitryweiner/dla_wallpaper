@@ -6,7 +6,8 @@ Settings -> Display -> Wallpaper -> Live Wallpapers -> select "DLA tree live wal
 
 [APK](https://github.com/dmitryweiner/dla_wallpaper/raw/master/app-debug.apk)
 
-![](dla.gif)
+![DLA tree video](dla.gif)
 
 ## Links to read
-* https://www.vogella.com/tutorials/AndroidLiveWallpaper/article.html
+* [What is DLA tree?](https://en.wikipedia.org/wiki/Diffusion-limited_aggregation)
+* [How to write Android live wallpaper](https://www.vogella.com/tutorials/AndroidLiveWallpaper/article.html)
